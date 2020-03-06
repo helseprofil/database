@@ -2,7 +2,7 @@
 
 -- to run in sqlite3 terminal
 -- 1. Create database if not alleredy exist with sqlite3 fhprofile.db
--- 2. Run this file with .read globs.sqlite
+-- 2. Run this file with .read globs.sql
 
 -- Omkode tabell
 CREATE TABLE `KH_OMKOD` (
