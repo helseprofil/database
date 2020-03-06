@@ -14,3 +14,20 @@ CREATE TABLE `KH_OMKOD` (
         `OBLIG`         INTEGER,
         PRIMARY KEY(`ID`)
 );
+
+
+-- Dele tabell
+CREATE TABLE `KH_DELE` (
+        `ID`              INTEGER,
+        `DEL`             TEXT,
+        `DELnavn`         TEXT,
+        `DelKol`	  TEXT,
+        `TYPE`            TEXT,
+        `FORMAT`	  TEXT,
+        `OMKODbet`	  TEXT,
+        `INTERVALLHULL`	  TEXT,
+        `AGGREGERPRI`	  INTEGER,
+        `AGGREGERvedPRED` INTEGER,
+        `DelKolE`	  TEXT,
+        PRIMARY KEY(`ID`)
+);
