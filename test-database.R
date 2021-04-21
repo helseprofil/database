@@ -16,3 +16,14 @@ befDT <- fread(befPath)
 dodeFile <- "DODE_SSB/ORG/2021/G42019_v3.csv"
 dodePath <- file.path(osDrive, orgPath, dodeFile)
 dodeDT <- fread(dodePath, encoding = "Latin-1")
+
+
+## Write data to database
+## First a database should be created before connection
+library(DBI)
+dbFile <- "c:/Git-fhi/database/ssb.accdb"
+dbCon <- "Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ="
+cs <- paste0(dbCon, dbFile)
+con <- DBI::dbConnect(odbc::odbc(), .connection_string = cs)
+DBI::dbWriteTable(con, "befolk", befDT, batch_rows = 1, overwrite = T)
+DBI::dbDisconnect(con)
