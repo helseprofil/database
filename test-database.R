@@ -27,3 +27,6 @@ cs <- paste0(dbCon, dbFile)
 con <- DBI::dbConnect(odbc::odbc(), .connection_string = cs)
 DBI::dbWriteTable(con, "befolk", befDT, batch_rows = 1, overwrite = T)
 DBI::dbDisconnect(con)
+
+
+df <- DBI::dbReadTable(con, "befolk")
