@@ -25,3 +25,16 @@ dodeDT <- fread(dodePath, encoding = "Latin-1")
 ## Innlessing ID 1153
 ## sep=";", skip=1,header=FALSE,brukfread=FALSE,FjernTommeRader=TRUE
 ## DELID G_uEDmLB_v4
+
+## Write data to database
+## First a database should be created before connection
+library(DBI)
+dbFile <- "c:/Git-fhi/database/ssb.accdb"
+dbCon <- "Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ="
+cs <- paste0(dbCon, dbFile)
+con <- DBI::dbConnect(odbc::odbc(), .connection_string = cs)
+DBI::dbWriteTable(con, "befolk", befDT, batch_rows = 1, overwrite = T)
+DBI::dbDisconnect(con)
+
+
+df <- DBI::dbReadTable(con, "befolk")
