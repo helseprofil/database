@@ -16,3 +16,12 @@ befDT <- fread(befPath)
 dodeFile <- "DODE_SSB/ORG/2021/G42019_v3.csv"
 dodePath <- file.path(osDrive, orgPath, dodeFile)
 dodeDT <- fread(dodePath, encoding = "Latin-1")
+
+## Core columns
+## These are columns that are mandatory in the database
+
+
+## Specification from Access
+## Innlessing ID 1153
+## sep=";", skip=1,header=FALSE,brukfread=FALSE,FjernTommeRader=TRUE
+## DELID G_uEDmLB_v4
