@@ -16,7 +16,7 @@ KHelse <- R6::R6Class(
            tblvalue = NULL,
            initialize = function(dbname = NULL) {
              if (is.null(dbname)) {
-               return(message(">>> DB name is missing!"))
+               stop(message(" Woopss!! Database file is missing!"))
              } else {
                self$dbname <- dbname
                cs <- paste0(private$..drv, self$dbname)
