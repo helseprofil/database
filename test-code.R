@@ -19,7 +19,6 @@ orgdb$db_close()
 rm(orgdb)
 
 
-DBI::dbWriteTable(orgdb$dbconn, "test_tbl", df, batch_rows=1, overwrite=TRUE)
 
 
 
