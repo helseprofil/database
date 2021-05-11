@@ -17,3 +17,9 @@ dbPath <- "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYR
 
 dbFile <- "KHELSA.mdb"
 khelseDB <- file.path(osDrive, dbPath, dbFile)
+
+orgPath_t <- "N:/Helseprofiler/DB_helseprofil"
+khFile_t <- "KHELSA_20210503_1319.mdb"
+khelseDB_t <- file.path(orgPath_t, khFile_t)
+orgFile <- "db-orgfiles.accdb"
+orgfileDB <- file.path(orgPath_t, orgFile)
