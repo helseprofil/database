@@ -1,2 +1,2 @@
-# database
-Håndtering av tabeller og relasjoner i databasen
+# Org database 
+Håndtering av original filer til en database
