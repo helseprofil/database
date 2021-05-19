@@ -30,13 +30,26 @@ DT[grby, on = (grunnkr <- "code"), bydel := sourceCode]
 
 
 ## Merge geo code
+## Add granularity
+DT[level == "bydel", kommune := gsub("\\d{2}$", "", code)][
+  level == "bydel", fylke := gsub("\\d{4}$", "", code)
+][
+  level == "bydel", bydel := code
+]
+
+DT[level == "kommune", fylke := gsub("\\d{2}$", "", code)][
+  level == "kommune", kommune := code
+]
+
+
 ## Run after adding granularity, else will be duplicated
 DT[level == "grunnkrets", grunnkr := code]
 DT[level == "fylke", fylke := code]
-DT[level == "kommune", kommune := code]
-DT[level == "bydel", bydel := code]
 
-## Add granularity
+## Add granularity fylke to kommune
+## DT[level == "kommune" & kommune != 9999, fylke := DT[fykom, sourceCode, on = "code"]]
+## DT[level == "kommune" & kommune == 9999, fylke := 99]
+
 
 setcolorder(DT, c(
   "code", "name", "validTo", "level",
