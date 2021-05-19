@@ -7,6 +7,7 @@ db <- KHelse$new(khelseDB_t)
 db$dbname
 db$dbconn
 df <- DBI::dbGetQuery(db$dbconn, "SELECT TOP 3 * FROM ORIGINALFILER")
+df
 db$db_close()
 db$db_reconnect()
 
@@ -18,7 +19,9 @@ orgdb$db_write(tblName, dodeDT)
 orgdb$db_close()
 rm(orgdb)
 
-
+## Test function
+arg <- 'sep=";",skip=1'
+dt <- read_org(befPath, arg = arg)
 
 
 
@@ -31,4 +34,4 @@ befDT <- fread(befPath)
 ## SSB Dode
 dodeFile <- "DODE_SSB/ORG/2021/G42019_v3.csv"
 dodePath <- file.path(osDrive, orgPath, dodeFile)
-dodeDT <- fread(dodePath, encoding = "Latin-1", header = FALSE)
+dodeDT <- fread(dodePath, encoding = "Latin-1", skip = 1)
