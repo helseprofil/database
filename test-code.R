@@ -9,7 +9,7 @@ db$dbconn
 df <- DBI::dbGetQuery(db$dbconn, "SELECT TOP 3 * FROM ORIGINALFILER")
 df
 db$db_close()
-db$db_reconnect()
+db$db_connect()
 
 orgfileDB
 orgdb <- KHelse$new(orgfileDB)

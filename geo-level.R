@@ -2,13 +2,13 @@ library(norgeo)
 library(data.table)
 
 ## Get the data with API
-grunnkr <- get_list("grunnkrets", year = 2021)
-grunnkr[, level := "grunnkrets"]
-bydel <- get_list("bydel", year = 2021)
+grunnkr <- get_code("grunnkrets", from = 2021)
+grunnkr[, level := "grunnkrets"][]
+bydel <- get_code("bydel", from = 2021)
 bydel[, level := "bydel"]
-kommune <- get_list("kommune", year = 2021)
+kommune <- get_code("kommune", from = 2021)
 kommune[, level := "kommune"]
-fylke <- get_list("fylke", year = 2021)
+fylke <- get_code("fylke", from = 2021)
 fylke[, level := "fylke"]
 
 grunn_bydel <- get_correspond("bydel", cor = "grunnkrets", from = 2020)
