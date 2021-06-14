@@ -3,7 +3,7 @@ library(data.table)
 
 ## Get the data with API
 grunnkr <- get_code("grunnkrets", from = 2021)
-grunnkr[, level := "grunnkrets"][]
+grunnkr[, level := "grunnkrets"]
 bydel <- get_code("bydel", from = 2021)
 bydel[, level := "bydel"]
 kommune <- get_code("kommune", from = 2021)
@@ -11,19 +11,22 @@ kommune[, level := "kommune"]
 fylke <- get_code("fylke", from = 2021)
 fylke[, level := "fylke"]
 
-grunn_bydel <- get_correspond("bydel", cor = "grunnkrets", from = 2020)
-grunn_komm <- get_correspond("komm", cor = "grunnkrets", from = 2020)
-fylke_komm <- get_correspond("fylke", cor = "kommune", from = 2020)
-
 ## Add higher granularity codes
 DT <- rbindlist(list(fylke, kommune, bydel, grunnkr))
 ## dt <- copy(DT)
 ## DT <- copy(dt)
 
+## If specfied year for arg 'from' has empty data then step down one year
+## til the nrow!=0
+grunn_bydel <- get_correspond("bydel", cor = "grunnkrets", from = 2020)
+grunn_komm <- get_correspond("komm", cor = "grunnkrets", from = 2020)
+fylke_komm <- get_correspond("fylke", cor = "kommune", from = 2020)
+
 grby <- grunn_bydel[, .(sourceCode, code = targetCode)]
 grkom <- grunn_komm[, .(sourceCode, code = targetCode)]
 fykom <- fylke_komm[, .(sourceCode, code = targetCode)]
 
+## Add granularity code to DT
 DT[grkom, on = "code", kommune := sourceCode]
 DT[fykom, on = c(kommune = "code"), fylke := sourceCode]
 DT[grby, on = (grunnkr <- "code"), bydel := sourceCode]
