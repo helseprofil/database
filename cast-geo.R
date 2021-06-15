@@ -63,6 +63,9 @@ cast_geo <- function(year) {
   return(dt[])
 }
 
+## Correspond codes can be empty if nothing has changed in
+## that specific year and need to get from previous year or even
+## year before before previous year etc..etc..
 find_correspond <- function(type, correspond, from) {
   ## type: Higher granularity eg. fylker
   ## correspond: Lower granularity eg. kommuner

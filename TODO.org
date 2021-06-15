@@ -9,9 +9,10 @@
   year every time correspond codes are empty.
 - See [[https://github.com/helseprofil/database/commit/1e0d308fa9762b5d5384282ad9ce6d89c2f5e9f4][commit 1e0d308]] with =find_correspond()=
 
-* TODO Cast geo codes
+* DONE Cast geo codes
 - Create function to cast all the granularity levels eg.
   |   codes | year | level   | grks    | fylke | kommune | bydel  | etc |
   |---------+------+---------+---------+-------+---------+--------+-----|
   | 0320333 | 2021 | grks    | 0333333 |    03 |    0320 | 032141 | xx  |
   |    0322 | 2021 | kommune | NA      |    03 |    0322 | NA     | xx  |
+- See function =cast_geo()=
