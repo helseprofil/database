@@ -9,7 +9,7 @@ cast_geo <- function(year) {
     DT[[geos[i]]] <- norgeo::get_code(geos[i], from = year)
     DT[[geos[i]]][, level := geos[i]]
   }
-  dt <- rbindlist(DT)
+  dt <- data.table::rbindlist(DT)
 
   ## SSB has correspond data only for
   ## - bydel-grunnkrets
@@ -23,7 +23,7 @@ cast_geo <- function(year) {
   )
 
   for (i in seq_along(COR)) {
-    COR[[i]] <- find_correspond(COR[[i]][1], COR[[i]][2], from = year)
+    COR[[i]] <- norgeo::find_correspond(COR[[i]][1], COR[[i]][2], from = year)
 
     keepCols <- c("sourceCode", "targetCode")
     delCol <- base::setdiff(names(COR[[i]]), keepCols)
