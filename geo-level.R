@@ -43,8 +43,8 @@ fykom <- fylke_komm[, .(sourceCode, code = targetCode)]
 
 ## Add granularity code to DT
 DT[grkom, on = "code", kommune := sourceCode]
+DT[grby, on = "code", bydel := sourceCode]
 DT[fykom, on = c(kommune = "code"), fylke := sourceCode]
-DT[grby, on = (grunnkr <- "code"), bydel := sourceCode]
 
 
 ## Merge geo code
