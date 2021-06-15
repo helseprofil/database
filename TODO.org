@@ -7,7 +7,7 @@
 - Corresponds codes can be empty when running =norgeo::get_corrspond= coz
   nothing has happened on the selected year. Should be able to select previous
   year every time correspond codes are empty.
-- See [[https://github.com/helseprofil/database/commit/1e0d308fa9762b5d5384282ad9ce6d89c2f5e9f4][commit 1e0d308]]
+- See [[https://github.com/helseprofil/database/commit/1e0d308fa9762b5d5384282ad9ce6d89c2f5e9f4][commit 1e0d308]] with =find_correspond()=
 
 * TODO Cast geo codes
 - Create function to cast all the granularity levels eg.
