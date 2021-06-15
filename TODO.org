@@ -5,6 +5,7 @@
 - Should it be like pivot table??
 * Cast geo codes
 - Create function to cast all the granularity levels eg.
-  |   codes | level |    grks | fylke | kommune |  bydel | etc |
-  |---------+-------+---------+-------+---------+--------+-----|
-  | 0320333 | grks  | 0333333 |    03 |    0320 | 032141 |     |
+  |   codes | year | level   | grks    | fylke | kommune | bydel  | etc |
+  |---------+------+---------+---------+-------+---------+--------+-----|
+  | 0320333 | 2021 | grks    | 0333333 |    03 |    0320 | 032141 | xx  |
+  |    0322 | 2021 | kommune | NA      |    03 |    0322 | NA     | xx  |
