@@ -1,9 +1,15 @@
 #+TITLE: Org database
 #+Date: 15.01.2021
-* Add total
+* TODO Add total
 - Add total to every categorical variables.
 - Should it be like pivot table??
-* Cast geo codes
+* DONE Empty correspond codes
+- Corresponds codes can be empty when running =norgeo::get_corrspond= coz
+  nothing has happened on the selected year. Should be able to select previous
+  year every time correspond codes are empty.
+- See [[1e0d308fa9762b5d5384282ad9ce6d89c2f5e9f4][1e0d308]]
+
+* TODO Cast geo codes
 - Create function to cast all the granularity levels eg.
   |   codes | year | level   | grks    | fylke | kommune | bydel  | etc |
   |---------+------+---------+---------+-------+---------+--------+-----|
