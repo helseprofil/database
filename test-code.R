@@ -122,3 +122,28 @@ setkey(dt4, fylke)
 setnames(dt4, "fylke", "GEO")
 dt4[1:60]
 fwrite(dt4, "dode_fylke.csv", sep = ";")
+
+
+## Split landbakgrunn
+dodeDT2
+dodeDT2[, landf := stringi::stri_extract(landb, regex = "\\D")]
+
+landRecode <- list(
+  land = c(NA, "B", "C"),
+  to = 1:3
+)
+dodeDT2[landRecode, on = c(landf = "land"), landf := i.to]
+
+dodeDT2[, landbak := stringi::stri_extract(landb, regex = "\\d")]
+
+dodeDT2[, .N, by = landf]
+dodeDT2[, .N, by = landb]
+
+unlist(strsplit("1B", ""))[2]
+unlist(strsplit("3B", "", fixed = TRUE))[1]
+
+unlist(stringi::stri_split("4B", regex = "\\d"))[2]
+grep("^\\d", "5B", value = TRUE)
+
+stringi::stri_extract("4B", regex = "^\\d")
+stringi::stri_extract("4B", regex = "\\D$")
