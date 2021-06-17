@@ -6,8 +6,8 @@ Only for:
   + Landbakgrunn: alle = Total
 * TODO Landbakgrunn
 - Split variable `landb` to:
-  + `landb` with numeric
-  + `landf` recode with:
+  + =landb= with numeric
+  + =landf= recode with:
     - 0 to 1
     - B to 2
     - C to 3
