@@ -1,8 +1,18 @@
 #+TITLE: Org database
 #+Date: 15.01.2021
 * TODO Add total
-- Add total to every categorical variables.
-- Should it be like pivot table??
+- Calculate total other than kjønn and alder
+- Only for:
+  + Utdanning: 0 = Total
+  + Landbakgrunn: alle = Total
+* TODO Landbakgrunn
+- Split variable `landb` to:
+  + =landb= with numeric
+  + =landf= recode with:
+    - 0 to 1
+    - B to 2
+    - C to 3
+    - Total to 0
 * DONE Empty correspond codes
 - Corresponds codes can be empty when running =norgeo::get_corrspond= coz
   nothing has happened on the selected year. Should be able to select previous

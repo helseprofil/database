@@ -1,4 +1,5 @@
 rm(list = ls())
+setwd("..")
 Rfiles <- c("misc.R", "parameter.R", "conn-db.R", "read-original.R")
 invisible(sapply(Rfiles, source))
 
@@ -42,14 +43,14 @@ dodeDT2 <- fread(dodePath, encoding = "Latin-1")
 
 ## Add geo levels
 dt2 <- copy(dodeDT2)
-dt <- copy(DT)
+dt <- norgeo::cast_geo(2021)
 
 str(dt2)
 str(dt)
 
 dt[, code := as.integer(code)]
 
-keepvar <- c("name", "validTo", "level", "grunnkr", "kommune", "fylke", "bydel")
+keepvar <- c("name", "validTo", "level", "grunnkrets", "kommune", "fylke", "bydel")
 dt2[dt, on = c(GRUNNKRETS = "code"), (keepvar) := mget(keepvar)]
 setnames(dt2, grep("^Utdann", names(dt2), value = T), "utdanning")
 
@@ -62,22 +63,24 @@ dim(dodeDT)
 
 dt2
 dt2[, .(antall = sum(antall)), by = .(kommune, SIVILSTAND)]
+fwrite(dt2, "raw_grunkrets.csv", sep = ";")
 
 dt2[, .N, by = utdanning]
 
 sdt <- groupingsets(
-  dt2[!is.na(fylke)],
+  dt2[!is.na(kommune)],
   j = .(antall = sum(antall, na.rm = T)),
-  by = c("fylke", "utdanning", "KJOENN", "landb"),
+  by = c("kommune", "KJOENN", "d_aldh", "utdanning", "landbak", "landf"),
   sets = list(
-    c("fylke", "utdanning", "KJOENN", "landb"),
-    c("fylke", "utdanning", "KJOENN"),
-    c("fylke", "utdanning", "landb"),
-    c("fylke", "KJOENN", "landb"),
-    c("fylke", "utdanning"),
-    c("fylke", "KJOENN"),
-    c("fylke", "landb"),
-    c("fylke")
+    c("kommune", "KJOENN", "d_aldh", "utdanning", "landbak", "landf"),
+    c("kommune", "utdanning", "landbak", "landf"),
+    c("kommune", "landbak", "landf"),
+    ## c("kommune", "KJOENN"),
+    ## c("kommune", "d_aldh"),
+    c("kommune", "landbak"),
+    c("kommune", "landf"),
+    c("kommune", "utdanning"),
+    c("kommune")
   )
 )
 
@@ -122,3 +125,29 @@ setkey(dt4, fylke)
 setnames(dt4, "fylke", "GEO")
 dt4[1:60]
 fwrite(dt4, "dode_fylke.csv", sep = ";")
+
+
+## Split landbakgrunn
+dodeDT2
+dodeDT2[, landf := stringi::stri_extract(landb, regex = "\\D")]
+
+landRecode <- list(
+  land = c(NA, "B", "C"),
+  to = 1:3
+)
+dodeDT2[landRecode, on = c(landf = "land"), landf := i.to]
+
+dodeDT2[, landbak := stringi::stri_extract(landb, regex = "\\d")]
+
+dodeDT2[, `:=`(landf = as.integer(landf), landbak = as.integer(landbak))]
+dodeDT2[, .N, by = landf]
+dodeDT2[, .N, by = landb]
+
+unlist(strsplit("1B", ""))[2]
+unlist(strsplit("3B", "", fixed = TRUE))[1]
+
+unlist(stringi::stri_split("4B", regex = "\\d"))[2]
+grep("^\\d", "5B", value = TRUE)
+
+stringi::stri_extract("4B", regex = "^\\d")
+stringi::stri_extract("4B", regex = "\\D$")
