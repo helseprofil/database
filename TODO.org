@@ -1,7 +1,8 @@
 #+TITLE: Org database
 #+Date: 15.01.2021
 * TODO Add total
-Only for:
+- Calculate total other than kjønn and alder
+- Only for:
   + Utdanning: 0 = Total
   + Landbakgrunn: alle = Total
 * TODO Landbakgrunn
