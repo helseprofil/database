@@ -9,9 +9,9 @@ sapply(list.of.packages, require, character.only = TRUE)
 ## Path and files
 OS <- Sys.info()["sysname"]
 osDrive <- switch(OS,
-                  Linux = "/mnt/F",
-                  Windows = "F:"
-                  )
+  Linux = "/mnt/F",
+  Windows = "F:"
+)
 orgPath <- "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA/SSB"
 dbPath <- "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING"
 
@@ -23,3 +23,6 @@ khFile_t <- "KHELSA_20210503_1319.mdb"
 khelseDB_t <- file.path(orgPath_t, khFile_t)
 orgFile <- "db-orgfiles.accdb"
 orgfileDB <- file.path(orgPath_t, orgFile)
+
+orgDBfile <- "org-innlesing_BE.accdb"
+orgDB <- file.path(orgPath_t, orgDBfile)
