@@ -1,24 +1,26 @@
 #+TITLE: Org database
 #+Date: 15.01.2021
-* TODO Add total
+* Access
+** TODO Show which file
+- Give overview table for which FILID to which LESID in Access file
+* Coding
+** TODO Add total
 - Calculate total other than kjønn and alder
 - Only for:
   + Utdanning: 0 = Total
   + Landbakgrunn: alle = Total
-* TODO Show which file
-- Give overview table for which FILID to which LESID in Access file
-* TODO Aggregating data
+** TODO Aggregating data
 - Where to specify option to aggregate ie. FILGRUPPE or INNLESING level.
 - Specifying in FILGRUPPE level will be implemented in all files at once
-* TODO Update file
+** TODO Update file
 - Able to update file for a specific year
 - In case where rawdata are updated
-* TODO Manual header or auto
+** TODO Manual header or auto
 - When manual header is specified for any of the standard column names, the new
   name should be refered to in the standard name specification.
 - OBS!! Need to update in the code as now the manual header is superior over
   standard name specification.
-* TODO Landbakgrunn
+** TODO Landbakgrunn
 - Split variable `landb` to:
   + =landb= with numeric
   + =landf= recode with:
@@ -26,13 +28,13 @@
     - B to 2
     - C to 3
     - Total to 0
-* DONE Empty correspond codes
+** DONE Empty correspond codes
 - Corresponds codes can be empty when running =norgeo::get_corrspond= coz
   nothing has happened on the selected year. Should be able to select previous
   year every time correspond codes are empty.
 - See [[https://github.com/helseprofil/database/commit/1e0d308fa9762b5d5384282ad9ce6d89c2f5e9f4][commit 1e0d308]] with =find_correspond()=
 
-* DONE Cast geo codes
+** DONE Cast geo codes
 - Create function to cast all the granularity levels eg.
   |   codes | year | level   | grks    | fylke | kommune | bydel  | etc |
   |---------+------+---------+---------+-------+---------+--------+-----|
