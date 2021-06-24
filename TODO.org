@@ -13,6 +13,11 @@
 * TODO Update file
 - Able to update file for a specific year
 - In case where rawdata are updated
+* TODO Manual header or auto
+- When manual header is specified for any of the standard column names, the new
+  name should be refered to in the standard name specification.
+- OBS!! Need to update in the code as now the manual header is superior over
+  standard name specification.
 * TODO Landbakgrunn
 - Split variable `landb` to:
   + =landb= with numeric
