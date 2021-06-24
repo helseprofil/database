@@ -5,6 +5,11 @@
 - Only for:
   + Utdanning: 0 = Total
   + Landbakgrunn: alle = Total
+* TODO Show which file
+- Give overview table for which FILID to which LESID
+* TODO Aggregering
+- Where to specify option to aggregate ie. FILGRUPPE or INNLESING level.
+- Specifying in FILGRUPPE level will be implemented in all files
 * TODO Landbakgrunn
 - Split variable `landb` to:
   + =landb= with numeric
