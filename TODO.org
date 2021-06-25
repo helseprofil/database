@@ -3,6 +3,9 @@
 * Access
 ** TODO Show which file
 - Give overview table for which FILID to which LESID in Access file
+** TODO Codebook
+- For recoding variables
+- Log showing what has been coded
 * Coding
 ** TODO Add total
 - Calculate total other than kjønn and alder
@@ -28,6 +31,10 @@
     - B to 2
     - C to 3
     - Total to 0
+** TODO Year
+- When not available in the rawdata, needs a column to specify year for the
+  data.
+- Arg in DEFAAR in KHfunction is used when AAR is specified with <$y>
 ** DONE Empty correspond codes
 - Corresponds codes can be empty when running =norgeo::get_corrspond= coz
   nothing has happened on the selected year. Should be able to select previous

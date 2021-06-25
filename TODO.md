@@ -1,37 +1,47 @@
 
 # Table of Contents
 
-1.  [Access](#org4e94f6d)
-    1.  [Show which file](#org2dceef9)
-2.  [Coding](#org12d7ded)
-    1.  [Add total](#orgb3ef10c)
-    2.  [Aggregating data](#org8adfd19)
-    3.  [Update file](#org3c77a37)
-    4.  [Manual header or auto](#org5b98aee)
-    5.  [Landbakgrunn](#orgabc5892)
-    6.  [Empty correspond codes](#org95a8aca)
-    7.  [Cast geo codes](#orgb90a01a)
+1.  [Access](#org82ada2a)
+    1.  [Show which file](#org2e0dd0d)
+    2.  [Codebook](#org099db7f)
+2.  [Coding](#orgcf7826a)
+    1.  [Add total](#orge09bb48)
+    2.  [Aggregating data](#orgc9b3954)
+    3.  [Update file](#org7109bac)
+    4.  [Manual header or auto](#org06d5bad)
+    5.  [Landbakgrunn](#orgb3e3760)
+    6.  [Year](#org6914c98)
+    7.  [Empty correspond codes](#orgeb73910)
+    8.  [Cast geo codes](#orgc4031db)
 
 
 
-<a id="org4e94f6d"></a>
+<a id="org82ada2a"></a>
 
 # Access
 
 
-<a id="org2dceef9"></a>
+<a id="org2e0dd0d"></a>
 
 ## TODO Show which file
 
 -   Give overview table for which FILID to which LESID in Access file
 
 
-<a id="org12d7ded"></a>
+<a id="org099db7f"></a>
+
+## TODO Codebook
+
+-   For recoding variables
+-   Log showing what has been coded
+
+
+<a id="orgcf7826a"></a>
 
 # Coding
 
 
-<a id="orgb3ef10c"></a>
+<a id="orge09bb48"></a>
 
 ## TODO Add total
 
@@ -41,7 +51,7 @@
     -   Landbakgrunn: alle = Total
 
 
-<a id="org8adfd19"></a>
+<a id="orgc9b3954"></a>
 
 ## TODO Aggregating data
 
@@ -49,7 +59,7 @@
 -   Specifying in FILGRUPPE level will be implemented in all files at once
 
 
-<a id="org3c77a37"></a>
+<a id="org7109bac"></a>
 
 ## TODO Update file
 
@@ -57,7 +67,7 @@
 -   In case where rawdata are updated
 
 
-<a id="org5b98aee"></a>
+<a id="org06d5bad"></a>
 
 ## TODO Manual header or auto
 
@@ -67,7 +77,7 @@
     standard name specification.
 
 
-<a id="orgabc5892"></a>
+<a id="orgb3e3760"></a>
 
 ## TODO Landbakgrunn
 
@@ -80,7 +90,16 @@
         -   Total to 0
 
 
-<a id="org95a8aca"></a>
+<a id="org6914c98"></a>
+
+## TODO Year
+
+-   When not available in the rawdata, needs a column to specify year for the
+    data.
+-   Arg in DEFAAR in KHfunction is used when AAR is specified with <$y>
+
+
+<a id="orgeb73910"></a>
 
 ## DONE Empty correspond codes
 
@@ -90,7 +109,7 @@
 -   See [commit 1e0d308](https://github.com/helseprofil/database/commit/1e0d308fa9762b5d5384282ad9ce6d89c2f5e9f4) with `find_correspond()`
 
 
-<a id="orgb90a01a"></a>
+<a id="orgc4031db"></a>
 
 ## DONE Cast geo codes
 
