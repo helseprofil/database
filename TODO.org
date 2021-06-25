@@ -34,7 +34,8 @@
 ** TODO Year
 - When not available in the rawdata, needs a column to specify year for the
   data.
-- Arg in DEFAAR in KHfunction is used when AAR is specified with <$y>
+- In KHfunction such situation is handled by the arg in DEFAAR when AAR
+  is specified with <$y>
 ** DONE Empty correspond codes
 - Corresponds codes can be empty when running =norgeo::get_corrspond= coz
   nothing has happened on the selected year. Should be able to select previous
