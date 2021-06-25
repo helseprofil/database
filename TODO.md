@@ -1,34 +1,36 @@
 
 # Table of Contents
 
-1.  [Access](#org2ca96c7)
-    1.  [Show which file](#org17d27b4)
-    2.  [Codebook](#orgee2fe4b)
-2.  [Coding](#org2bbf3c9)
-    1.  [Add total](#org1fe2396)
-    2.  [Aggregating data](#org2b8d7b1)
-    3.  [Update file](#org2d9f868)
-    4.  [Manual header or auto](#orgca31a0a)
-    5.  [Landbakgrunn](#org7d8843f)
-    6.  [Year](#orgc35c544)
-    7.  [Empty correspond codes](#orgc25c22b)
-    8.  [Cast geo codes](#org33d1519)
+1.  [Access](#orgce866fe)
+    1.  [Show which file](#orgb5e3b40)
+    2.  [Codebook](#org0414125)
+2.  [Coding](#orga932ba6)
+    1.  [Reading rawdata](#org5dead8d)
+        1.  [Update file](#org79b6e25)
+        2.  [Manual header or auto](#org9f5a881)
+        3.  [Landbakgrunn](#org4e496da)
+        4.  [Year](#org6f418b2)
+        5.  [Empty correspond codes](#orgbb7cf36)
+        6.  [Cast geo codes](#org69d9460)
+    2.  [Aggregate from database](#org836a89c)
+        1.  [Add total](#orgf5f7a1d)
+        2.  [Aggregating data](#org07770ca)
 
 
 
-<a id="org2ca96c7"></a>
+<a id="orgce866fe"></a>
 
 # Access
 
 
-<a id="org17d27b4"></a>
+<a id="orgb5e3b40"></a>
 
 ## TODO Show which file
 
 -   Give overview table for which FILID to which LESID in Access file
 
 
-<a id="orgee2fe4b"></a>
+<a id="org0414125"></a>
 
 ## TODO Codebook
 
@@ -36,40 +38,32 @@
 -   Log showing what has been coded
 
 
-<a id="org2bbf3c9"></a>
+<a id="orga932ba6"></a>
 
 # Coding
 
-
-<a id="org1fe2396"></a>
-
-## TODO Add total
-
--   Calculate total other than kjønn and alder
--   Only for:
-    -   Utdanning: 0 = Total
-    -   Landbakgrunn: alle = Total
+Either for reading rawdata or aggregate from database
 
 
-<a id="org2b8d7b1"></a>
+<a id="org5dead8d"></a>
 
-## TODO Aggregating data
+## Reading rawdata
 
--   Where to specify option to aggregate ie. FILGRUPPE or INNLESING level.
--   Specifying in FILGRUPPE level will be implemented in all files at once
+Reading rawdata mostly in `.csv` file
 
 
-<a id="org2d9f868"></a>
+<a id="org79b6e25"></a>
 
-## TODO Update file
+### TODO Update file
 
--   Able to update file for a specific year
+-   When new rawdata being updated for a specific year that already available in
+    the database how can the database be updated with the new rawdata
 -   In case where rawdata are updated
 
 
-<a id="orgca31a0a"></a>
+<a id="org9f5a881"></a>
 
-## TODO Manual header or auto
+### TODO Manual header or auto
 
 -   When manual header is specified for any of the standard column names, the new
     name should be refered to in the standard name specification.
@@ -77,9 +71,9 @@
     standard name specification.
 
 
-<a id="org7d8843f"></a>
+<a id="org4e496da"></a>
 
-## TODO Landbakgrunn
+### TODO Landbakgrunn
 
 -   Split variable \`landb\` to:
     -   `landb` with numeric
@@ -90,9 +84,9 @@
         -   Total to 0
 
 
-<a id="orgc35c544"></a>
+<a id="org6f418b2"></a>
 
-## TODO Year
+### TODO Year
 
 -   When not available in the rawdata, needs a column to specify year for the
     data.
@@ -100,9 +94,9 @@
     is specified with <$y>
 
 
-<a id="orgc25c22b"></a>
+<a id="orgbb7cf36"></a>
 
-## DONE Empty correspond codes
+### DONE Empty correspond codes
 
 -   Corresponds codes can be empty when running `norgeo::get_corrspond` coz
     nothing has happened on the selected year. Should be able to select previous
@@ -110,9 +104,9 @@
 -   See [commit 1e0d308](https://github.com/helseprofil/database/commit/1e0d308fa9762b5d5384282ad9ce6d89c2f5e9f4) with `find_correspond()`
 
 
-<a id="org33d1519"></a>
+<a id="org69d9460"></a>
 
-## DONE Cast geo codes
+### DONE Cast geo codes
 
 -   Create function to cast all the granularity levels eg.
     
@@ -175,4 +169,29 @@
     </tbody>
     </table>
 -   See function `cast_geo()`
+
+
+<a id="org836a89c"></a>
+
+## Aggregate from database
+
+This will produce a `.csv` file
+
+
+<a id="orgf5f7a1d"></a>
+
+### TODO Add total
+
+-   Calculate total other than kjønn and alder
+-   Only for:
+    -   Utdanning: 0 = Total
+    -   Landbakgrunn: alle = Total
+
+
+<a id="org07770ca"></a>
+
+### TODO Aggregating data
+
+-   Where to specify option to aggregate ie. FILGRUPPE or INNLESING level.
+-   Specifying in FILGRUPPE level will be implemented in all files at once
 
