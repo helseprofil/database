@@ -16,7 +16,7 @@ Reading rawdata mostly in =.csv= file
 - In case where rawdata are updated
 *** TODO Manual header or auto
 - When manual header is specified for any of the standard column names, the new
-  name should be refered to in the standard name specification.
+  name should be referred to in the standard name specification.
 - OBS!! Need to update in the code as now the manual header is superior over
   standard name specification.
 *** TODO Landbakgrunn
@@ -30,8 +30,8 @@ Reading rawdata mostly in =.csv= file
 *** TODO Year
 - When not available in the rawdata, needs a column to specify year for the
   data.
-- In KHfunction such situation is handled by the arg in DEFAAR when AAR
-  is specified with <$y>
+- In KHfunction such situation is handled by the arg =DEFAAR= in *ORIGINALFILER*
+  table. When =AAR= in  *INNLESING* table is specified with =<$y>= then it will use =DEFAAR=
 *** DONE Empty correspond codes
 - Corresponds codes can be empty when running =norgeo::get_corrspond= coz
   nothing has happened on the selected year. Should be able to select previous
