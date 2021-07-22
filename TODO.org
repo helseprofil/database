@@ -27,7 +27,11 @@ Reading rawdata mostly in =.csv= file
     - B to 2
     - C to 3
     - Total to 0
-*** TODO Year
+*** TODO Standard variable
+Create a list to add all the standard variables that will be used in different
+analyses such as DEFAAR, AGGREGERE, manual column with $ etc.
+
+*** DONE Year
 - When not available in the rawdata, needs a column to specify year for the
   data.
 - In KHfunction such situation is handled by the arg =DEFAAR= in *ORIGINALFILER*
