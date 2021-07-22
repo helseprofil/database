@@ -1,26 +1,58 @@
 getwd()
 ## Rfiles <- c("misc.R", "parameter.R", "conn-db.R", "read-original.R")
-Rfiles <- "conn-db.R"
+Rfiles <- c("misc.R", "conn-db.R")
 invisible(sapply(Rfiles, source))
 
+## Seperate envir. for general objects for multiple use
 coEnv <- new.env()
-coEnv$conn <- KHelse$new("N:/Helseprofiler/DB_helseprofil/kilde/org-innlesing_BE.accdb")
+## coEnv$conn <- KHelse$new("N:/Helseprofiler/DB_helseprofil/kilde/org-innlesing_BE.accdb")
+coEnv$conn <- KHelse$new("N:/Helseprofiler/DB_helseprofil/org-innlesing.accdb")
 coEnv$orgPath <- file.path(osDrive, orgPath) # from misc.R
 
+## coEnv$conn$db_close()
 
+## Create a list to feed all the standard object that will be used for further
+## analysis eg. DEFAAR, AGGREGERE, manual input etc
+
+
+
+
+filgruppe <- "BEFOLKNING"
 LesOrg <- function(filgruppe = NULL) {
-  dd <- get_raw(filgruppe)
+  dd <- get_spec(filgruppe)
   orgFile <- data.table::fread(file.path(coEnv$orgPath, dd$FILNAVN))
   orgFile <- rename_col(data = orgFile, spec = dd)
 
-  orgFile[, c("landb", "landf") := data.table::tstrsplit(LANDBK, "", fixed = TRUE)]
+  orgFile[, c("landb", "landf") := data.table::tstrsplit(LANDBAK, "", fixed = TRUE)]
 
   return(orgFile[])
 }
 
+get_aggrigate <- function(filgruppe = NULL) {
+  qs <- sprintf("SELECT AGGREGERE FROM tbl_Filgruppe
+                 WHERE FILGRUPPE = '%s'", filgruppe)
+  dt <- DBI::dbGetQuery(coEnv$conn$dbconn, qs)
+  dt$AGGREGERE
+}
+
+get_aggrigate("BEFOLKNING")
+
+
+get_file_year <- function(id = NULL) {
+  ## id : FILID from output of get_spec() function
+  qs <- sprintf("SELECT DEFAAR FROM tbl_Orgfile
+                WHERE FILID = %d", id)
+  dt <- DBI::dbGetQuery(coEnv$conn$dbconn, qs)
+  dt$DEFAAR
+}
+
+get_file_year(dd$FILID)
+
+class(dd$FILID)
+
 
 ## Get all valid rows in tbl_Innlesing with valid file from tbl_Orgfile
-get_raw <- function(filgruppe = NULL) {
+get_spec <- function(filgruppe = NULL) {
   qs <- sprintf("SELECT KOBLID, tbl_Koble.FILID, tbl_Koble.FILGRUPPE, FILNAVN, IBRUKTIL, tbl_Innlesing.*
 FROM tbl_Innlesing
 INNER JOIN (tbl_Koble
@@ -35,7 +67,8 @@ AND tbl_Orgfile.IBRUKTIL = #9999-01-01#
   data.table::setDT(dt)
 }
 
-dd <- get_raw("BEFOLKNING")
+dd <- get_spec("BEFOLKNING")
+dd
 tic()
 orgFile <- data.table::fread(file.path(coEnv$orgPath, dd$FILNAVN))
 toc()
@@ -60,14 +93,34 @@ toc()
 names(orgFile)
 dd
 
+## column that will be inserted manually will start with dollar sign $
+## for instance AAR with $Y will get the value from DEFAAR
+get_manual_col <- function(pattern, x) {
+  ## pattern : pattern to grep
+  ## x       : data specification from Access to grep
+  yy <- grepl(pattern = pattern, x = x)
+  names(x)[yy]
+}
+
+get_manual_col("^\\$", dd)
+
+
 rename_col <- function(data = NULL, spec = NULL) {
   ## data : Input data
   ## spec : specification from Access tbl_Innlesing
 
+  ## Manual input converted to NA for easier column renaming
+  ## with just !is.na()
+  mancol <- get_manual_col("^\\$", spec)
+  if (length(mancol) > 0) {
+    spec[, (mancol) := NA]
+  }
+
   ## If both standard columns exists and MANHEADER,
   ## use MANHEADER
-  stdNameAll <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBK", "VAL")
-  stdOldAll <- with(spec, c(GEO, AAR, KJONN, ALDER, UTDANN, LANDBK, VAL))
+  stdNameAll <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "VAL")
+  stdOldAll <- with(spec, c(GEO, AAR, KJONN, ALDER, UTDANN, LANDBAK, VAL))
+
   stdName <- stdNameAll[!is.na(stdOldAll)]
   stdOld <- stdOldAll[!is.na(stdOldAll)]
 
@@ -86,8 +139,8 @@ rename_col <- function(data = NULL, spec = NULL) {
 dt <- rename_col(data = orgFile, spec = dd)
 dt
 
-## Split LANDBK
-dt[, c("landb", "landf") := data.table::tstrsplit(LANDBK, "", fixed = TRUE)]
+## Split LANDBAK
+dt[, c("landb", "landf") := data.table::tstrsplit(LANDBAK, "", fixed = TRUE)]
 dt
 
 ## Aggregere
@@ -97,7 +150,7 @@ dd$AGGRIGERE
 
 dt <- LesOrg("Dode")
 dt <- LesOrg("BEFOLKNING")
-aggCols <- setdiff(names(dt), c("GEO", "LANDBK", "VAL"))
+aggCols <- setdiff(names(dt), c("GEO", "LANDBAK", "VAL"))
 names(dt)
 
 ## When lowest geo codes are grunnkrets, else should check what codes are in the rawdata
