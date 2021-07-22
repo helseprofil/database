@@ -36,6 +36,7 @@ analyses such as DEFAAR, AGGREGERE, manual column with $ etc.
   data.
 - In KHfunction such situation is handled by the arg =DEFAAR= in *ORIGINALFILER*
   table. When =AAR= in  *INNLESING* table is specified with =<$y>= then it will use =DEFAAR=
+- See commit [[https://github.com/helseprofil/database/commit/01b7a7aed2cf84690f17e76a12b9678e632a066d][01b7a7]]
 *** DONE Empty correspond codes
 - Corresponds codes can be empty when running =norgeo::get_corrspond= coz
   nothing has happened on the selected year. Should be able to select previous

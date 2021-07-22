@@ -1,37 +1,37 @@
 
 # Table of Contents
 
-1.  [Access](#org001cea0)
-    1.  [Show which file](#orgdc512ae)
-    2.  [Codebook](#orgac7d8ef)
-2.  [Coding](#org278be9b)
-    1.  [Reading rawdata](#org2b9d2c1)
-        1.  [Update file](#orgdc49d76)
-        2.  [Manual header or auto](#org5a758e9)
-        3.  [Landbakgrunn](#org95dc1fb)
-        4.  [Standard variable](#org67ccf9a)
-        5.  [Year](#orgd04ea32)
-        6.  [Empty correspond codes](#org213dc71)
-        7.  [Cast geo codes](#orgb7772c8)
-    2.  [Aggregate from database](#orga9cc38e)
-        1.  [Add total](#org3abfd3d)
-        2.  [Aggregating data](#orge6a6793)
+1.  [Access](#orgfa227cb)
+    1.  [Show which file](#org7fff4f5)
+    2.  [Codebook](#org12eeb45)
+2.  [Coding](#orgf5781d7)
+    1.  [Reading rawdata](#org0814ca0)
+        1.  [Update file](#org984bc1c)
+        2.  [Manual header or auto](#org6b382d0)
+        3.  [Landbakgrunn](#orgce8befa)
+        4.  [Standard variable](#org0575b06)
+        5.  [Year](#org3b77e13)
+        6.  [Empty correspond codes](#org94907dc)
+        7.  [Cast geo codes](#orgf8a5ed5)
+    2.  [Aggregate from database](#org9c26bfc)
+        1.  [Add total](#org410b3e5)
+        2.  [Aggregating data](#org8ce5944)
 
 
 
-<a id="org001cea0"></a>
+<a id="orgfa227cb"></a>
 
 # Access
 
 
-<a id="orgdc512ae"></a>
+<a id="org7fff4f5"></a>
 
 ## TODO Show which file
 
 -   Give overview table for which FILID to which LESID in Access file
 
 
-<a id="orgac7d8ef"></a>
+<a id="org12eeb45"></a>
 
 ## TODO Codebook
 
@@ -39,21 +39,21 @@
 -   Log showing what has been coded
 
 
-<a id="org278be9b"></a>
+<a id="orgf5781d7"></a>
 
 # Coding
 
 Either for reading rawdata or aggregate from database
 
 
-<a id="org2b9d2c1"></a>
+<a id="org0814ca0"></a>
 
 ## Reading rawdata
 
 Reading rawdata mostly in `.csv` file
 
 
-<a id="orgdc49d76"></a>
+<a id="org984bc1c"></a>
 
 ### TODO Update file
 
@@ -62,7 +62,7 @@ Reading rawdata mostly in `.csv` file
 -   In case where rawdata are updated
 
 
-<a id="org5a758e9"></a>
+<a id="org6b382d0"></a>
 
 ### TODO Manual header or auto
 
@@ -72,7 +72,7 @@ Reading rawdata mostly in `.csv` file
     standard name specification.
 
 
-<a id="org95dc1fb"></a>
+<a id="orgce8befa"></a>
 
 ### TODO Landbakgrunn
 
@@ -85,7 +85,7 @@ Reading rawdata mostly in `.csv` file
         -   Total to 0
 
 
-<a id="org67ccf9a"></a>
+<a id="org0575b06"></a>
 
 ### TODO Standard variable
 
@@ -93,7 +93,7 @@ Create a list to add all the standard variables that will be used in different
 analyses such as DEFAAR, AGGREGERE, manual column with $ etc.
 
 
-<a id="orgd04ea32"></a>
+<a id="org3b77e13"></a>
 
 ### DONE Year
 
@@ -101,9 +101,10 @@ analyses such as DEFAAR, AGGREGERE, manual column with $ etc.
     data.
 -   In KHfunction such situation is handled by the arg `DEFAAR` in **ORIGINALFILER**
     table. When `AAR` in  **INNLESING** table is specified with `<$y>` then it will use `DEFAAR`
+-   See commit [01b7a7](https://github.com/helseprofil/database/commit/01b7a7aed2cf84690f17e76a12b9678e632a066d)
 
 
-<a id="org213dc71"></a>
+<a id="org94907dc"></a>
 
 ### DONE Empty correspond codes
 
@@ -113,7 +114,7 @@ analyses such as DEFAAR, AGGREGERE, manual column with $ etc.
 -   See [commit 1e0d308](https://github.com/helseprofil/database/commit/1e0d308fa9762b5d5384282ad9ce6d89c2f5e9f4) with `find_correspond()`
 
 
-<a id="orgb7772c8"></a>
+<a id="orgf8a5ed5"></a>
 
 ### DONE Cast geo codes
 
@@ -180,14 +181,14 @@ analyses such as DEFAAR, AGGREGERE, manual column with $ etc.
 -   See function `cast_geo()`
 
 
-<a id="orga9cc38e"></a>
+<a id="org9c26bfc"></a>
 
 ## Aggregate from database
 
 This will produce a `.csv` file
 
 
-<a id="org3abfd3d"></a>
+<a id="org410b3e5"></a>
 
 ### TODO Add total
 
@@ -197,7 +198,7 @@ This will produce a `.csv` file
     -   Landbakgrunn: alle = Total
 
 
-<a id="orge6a6793"></a>
+<a id="org8ce5944"></a>
 
 ### TODO Aggregating data
 
