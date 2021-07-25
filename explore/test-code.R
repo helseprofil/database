@@ -1,3 +1,4 @@
+getwd()
 rm(list = ls())
 setwd("..")
 Rfiles <- c("misc.R", "parameter.R", "conn-db.R", "read-original.R")

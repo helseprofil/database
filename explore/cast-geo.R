@@ -77,3 +77,8 @@ find_correspond <- function(type, correspond, from) {
   }
   return(dt)
 }
+
+
+library(norgeo)
+dtcast <- cast_geo(2021)
+View(dtcast)

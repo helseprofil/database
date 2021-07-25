@@ -1,11 +1,25 @@
 #+TITLE: Org database
 #+Date: 15.01.2021
-* TODO Add total
-- Calculate total other than kjønn and alder
-- Only for:
-  + Utdanning: 0 = Total
-  + Landbakgrunn: alle = Total
-* TODO Landbakgrunn
+* Access
+** TODO Show which file
+- Give overview table for which FILID to which LESID in Access file
+** TODO Codebook
+- For recoding variables
+- Log showing what has been coded
+* Coding
+Either for reading rawdata or aggregate from database
+** Reading rawdata
+Reading rawdata mostly in =.csv= file
+*** TODO Update file
+- When new rawdata being updated for a specific year that already available in
+  the database how can the database be updated with the new rawdata
+- In case where rawdata are updated
+*** TODO Manual header or auto
+- When manual header is specified for any of the standard column names, the new
+  name should be referred to in the standard name specification.
+- OBS!! Need to update in the code as now the manual header is superior over
+  standard name specification.
+*** TODO Landbakgrunn
 - Split variable `landb` to:
   + =landb= with numeric
   + =landf= recode with:
@@ -13,16 +27,37 @@
     - B to 2
     - C to 3
     - Total to 0
-* DONE Empty correspond codes
+*** TODO Standard variable
+Create a list to add all the standard variables that will be used in different
+analyses such as DEFAAR, AGGREGERE, manual column with $ etc.
+
+*** DONE Year
+- When not available in the rawdata, needs a column to specify year for the
+  data.
+- In KHfunction such situation is handled by the arg =DEFAAR= in *ORIGINALFILER*
+  table. When =AAR= in  *INNLESING* table is specified with =<$y>= then it will use =DEFAAR=
+- See commit [[https://github.com/helseprofil/database/commit/01b7a7aed2cf84690f17e76a12b9678e632a066d][01b7a7]]
+*** DONE Empty correspond codes
 - Corresponds codes can be empty when running =norgeo::get_corrspond= coz
   nothing has happened on the selected year. Should be able to select previous
   year every time correspond codes are empty.
 - See [[https://github.com/helseprofil/database/commit/1e0d308fa9762b5d5384282ad9ce6d89c2f5e9f4][commit 1e0d308]] with =find_correspond()=
 
-* DONE Cast geo codes
+*** DONE Cast geo codes
 - Create function to cast all the granularity levels eg.
   |   codes | year | level   | grks    | fylke | kommune | bydel  | etc |
   |---------+------+---------+---------+-------+---------+--------+-----|
   | 0320333 | 2021 | grks    | 0333333 |    03 |    0320 | 032141 | xx  |
   |    0322 | 2021 | kommune | NA      |    03 |    0322 | NA     | xx  |
 - See function =cast_geo()=
+
+** Aggregate from database
+This will produce a =.csv= file
+*** TODO Add total
+- Calculate total other than kjønn and alder
+- Only for:
+  + Utdanning: 0 = Total
+  + Landbakgrunn: alle = Total
+*** TODO Aggregating data
+- Where to specify option to aggregate ie. FILGRUPPE or INNLESING level.
+- Specifying in FILGRUPPE level will be implemented in all files at once
