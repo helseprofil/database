@@ -20,13 +20,48 @@ coEnv$orgPath <- file.path(osDrive, orgPath) # from misc.R
 filgruppe <- "BEFOLKNING"
 LesOrg <- function(filgruppe = NULL) {
   dd <- get_spec(filgruppe)
-  orgFile <- data.table::fread(file.path(coEnv$orgPath, dd$FILNAVN))
-  orgFile <- rename_col(data = orgFile, spec = dd)
 
-  orgFile[, c("landb", "landf") := data.table::tstrsplit(LANDBAK, "", fixed = TRUE)]
+  listDT <- vector(mode = "list", length = nrow(dd))
 
-  return(orgFile[])
+  for (i in seq_len(nrow(dd))) {
+    orgFile <- data.table::fread(file.path(coEnv$orgPath, dd[i]$FILNAVN))
+    orgFile <- rename_col(data = orgFile, spec = dd[i])
+
+    orgFile[, c("landb", "landf") := data.table::tstrsplit(LANDBAK, "", fixed = TRUE)]
+
+    listDT[[i]] <- orgFile
+  }
+
+  return(listDT)
 }
+
+
+install.packages(c("Rcpp", "readxl"))
+tools::file_ext("files.xlsx")
+
+xl <- readxl::read_excel(
+  "F:/Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA/SSB/DODE_SSB/ORG/2021/G42018_v3.xlsx",
+  sheet = "Ark1"
+)
+
+
+read_file <- function(file = NULL) {
+  ## file : File name to be read
+
+  fileExt <- tools::file_ext(file)
+}
+
+file_csv <- function(file = NULL) {
+
+}
+
+file_excel <- function(file = NULL) {
+  dt <- readxl::read_excel(file)
+}
+
+
+
+
 
 get_aggrigate <- function(filgruppe = NULL) {
   qs <- sprintf("SELECT AGGREGERE FROM tbl_Filgruppe
@@ -65,6 +100,12 @@ AND tbl_Orgfile.IBRUKTIL = #9999-01-01#
 
   dt <- DBI::dbGetQuery(coEnv$conn$dbconn, qs)
   data.table::setDT(dt)
+}
+
+## Looping the rows
+tt <- get_spec("Dode")
+for (i in seq_len(nrow(tt))) {
+  ...
 }
 
 dd <- get_spec("BEFOLKNING")
